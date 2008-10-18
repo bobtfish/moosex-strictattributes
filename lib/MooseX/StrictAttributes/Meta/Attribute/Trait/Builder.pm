@@ -1,4 +1,4 @@
-package MooseX::StrictAttributeBuilders::Attribute::Trait;
+package MooseX::StrictAttributes::Meta::Attribute::Trait::Builder;
 use Moose::Role;
 
 after 'attach_to_class' => sub {
@@ -9,4 +9,3 @@ after 'attach_to_class' => sub {
 };
 
 1;
-
