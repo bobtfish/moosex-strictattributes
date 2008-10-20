@@ -3,7 +3,7 @@ use Moose::Role;
 
 with 'MooseX::StrictAttributes::AddDefaultAttributeTrait';
 
-sub _additional_trait { 'StrictBuilder' }
+__PACKAGE__->__generate_attribute_trait_appender('StrictBuilder');
 
 1;
 

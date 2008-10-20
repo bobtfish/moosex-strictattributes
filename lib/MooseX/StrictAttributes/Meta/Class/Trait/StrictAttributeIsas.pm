@@ -3,6 +3,6 @@ use Moose::Role;
 
 with 'MooseX::StrictAttributes::AddDefaultAttributeTrait';
 
-sub _additional_trait { 'StrictIsa' }
+__PACKAGE__->__generate_attribute_trait_appender('StrictIsa');
 
 1;

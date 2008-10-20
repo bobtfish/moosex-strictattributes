@@ -1,5 +1,5 @@
 use strict;
-use Test::More tests => 10;
+use Test::More tests => 11;
 use Test::Exception;
 
 throws_ok {
@@ -34,7 +34,7 @@ lives_ok {
     } 'Assign';
     throws_ok {
         $i->foo(Some::Other::Class->new)
-    } qr/.*/, 'Throws when assign wrong isa'
+    } qr/.*/, 'Throws when assign wrong isa';
 }
 
 lives_ok {
@@ -65,3 +65,15 @@ throws_ok {
 
     has foo => ( isa => 'Some::NonExistant::Class|Some::Other::Class' );
 } qr/Could not locate type constraint \(Some::NonExistant::Class\) for the union/, 'Create class with union type constraint throws';
+
+{
+    {
+        package Running::Out::Of::Names;
+        use Moose -traits => [qw/ StrictAttributeIsas /];
+    }
+    my $i = Running::Out::Of::Names->new;
+    TODO: {
+        local $TODO = 'Should be using Moose::Exporter sugar that can be namespace::cleand';
+        ok(!$i->meta->can('__generate_attribute_trait_appender'), 'Clean namespace in metaclass');
+    }
+}
