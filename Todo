@@ -1,7 +1,5 @@
- - Combined Class and Attribute traits.
  - More tests
  - More features
- - Document individual traits
  - pod / spelling / use / coverage tests
  - Generally add the necessary other bits to make this into a real distribution
  - Rename in Moose SVN.

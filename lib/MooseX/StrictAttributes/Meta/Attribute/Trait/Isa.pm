@@ -37,3 +37,50 @@ sub _is_valid_class_name {
 }
 
 1;
+
+__END__
+
+=head1 NAME
+
+MooseX::StrictAttributes::Meta::Attribute::Trait::Isa - An attribute metaclass trait which
+enures that all class types attached to an attribute with isa refer to loaded classes.
+
+=head1 SYNOPSIS
+
+    package My::Class
+    use Moose;
+    
+    # Throws exception as we haven't loaded Other::Class
+    has foo ( isa => 'Other::Class', traits => [qw/ StrictIsa /] );
+
+    package Other::Class;
+    use Moose;
+    
+    # This is now fine, as we defined My::Class above
+    has bar ( isa => 'My::Class', traits => [qw/ StrictIsa /] );
+
+=head1 DESCRIPTION
+
+Performs a check that the C<isa> type of any attributes with this type, if a class type,
+refers to a valid and loaded class. This module will also try to introspect more complex
+(e.g. parametrized and union) type constraints, extract any class types from them, and
+test they also refer to valid classes.
+
+=head1 BUGS AND SOURCE CODE
+
+This software probably contains bugs somewhere, and the way in which some components
+are implemented is not optimal.
+
+Patches welcome. Please ask in #moose for commit bits.
+
+The source code for this project is in the Moose repository at L<http://code2.0beta.co.uk/moose/svn/>
+
+=head1 AUTHORS
+
+Tomas Doran <bobtfish@bobtfish.net> (t0m on #moose)
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright 2008 Tomas Doran.
+
+This library is free software; you can redistribute it and/or modify it under the same terms as Perl itself.
