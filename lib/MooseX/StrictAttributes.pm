@@ -10,7 +10,7 @@ use MooseX::StrictAttributes::Meta::Attribute::Trait::Isa;
 use MooseX::StrictAttributes::Meta::Attribute::Trait::Builder;
 #use MooseX::StrictAttributes::Meta::Attribute::Trait::Constructor;
 
-our $VERSION = '0.001';
+our $VERSION = '0.0001';
 
 Moose::Exporter->setup_import_methods( also => 'Moose' );
 
@@ -71,7 +71,7 @@ are implemented is not optimal.
 
 Patches welcome.
 
-=head1 AUTHORS
+=head1 AUTHOR
 
 Tomas Doran <bobtfish@bobtfish.net> (t0m on #moose)
 
