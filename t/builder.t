@@ -32,15 +32,12 @@ TODO: {
     } qr/No _build_foo method defined for attribute foo in class Some::Class::Redux/, 'Used as a trait on attributes';
 }
 
-TODO: {
-    local $TODO = 'Not implemented';
-    lives_ok {
-        package RuntimeMethods;
-        use Moose;
-        use Sub::Name;
+lives_ok {
+    package RuntimeMethods;
+    use Moose;
+    use Sub::Name;
 
-        has foo => (is => 'ro', builder => '_build_foo', traits => [qw/ StrictBuilder /]);
-        *_build_foo = subname _build_foo => sub { 'foo' };
-    } 'Defining methods at runtime after attribute works';
-}
+    has foo => (is => 'ro', builder => '_build_foo', traits => [qw/ StrictBuilder /]);
+    *_build_foo = subname _build_foo => sub { 'foo' };
+} 'Defining methods at runtime after attribute works';
 
