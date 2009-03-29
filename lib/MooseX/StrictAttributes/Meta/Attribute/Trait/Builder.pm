@@ -8,6 +8,11 @@ after 'attach_to_class' => sub {
     confess(sprintf("No %s method defined for attribute %s", $attr->builder, $attr->name));
 };
 
+package # Hide from PAUSE
+    Moose::Meta::Attribute::Custom::Trait::StrictBuilder;
+
+sub register_implementation { 'MooseX::StrictAttributes::Meta::Attribute::Trait::Builder' }
+
 1;
 
 __END__
@@ -44,9 +49,7 @@ net against mistyping method names.
 This software probably contains bugs somewhere, and the way in which some components
 are implemented is not optimal.
 
-Patches welcome. Please ask in #moose for commit bits.
-
-The source code for this project is in the Moose repository at L<http://code2.0beta.co.uk/moose/svn/>
+Patches welcome. 
 
 =head1 AUTHORS
 

@@ -1,8 +1,33 @@
-package MooseX:::StrictAttributes;
+package MooseX::StrictAttributes;
 use strict;
 use warnings;
 
+use Moose ();
+use Moose::Exporter;
+use Moose::Util::MetaRole;
+
+use MooseX::StrictAttributes::Meta::Attribute::Trait::Isa;
+use MooseX::StrictAttributes::Meta::Attribute::Trait::Builder;
+#use MooseX::StrictAttributes::Meta::Attribute::Trait::Constructor;
+
 our $VERSION = '0.001';
+
+Moose::Exporter->setup_import_methods( also => 'Moose' );
+
+sub init_meta {
+    shift; # our class name
+    my %options = @_;
+    my $meta = Moose->init_meta( %options );
+
+    Moose::Util::MetaRole::apply_metaclass_roles(
+        for_class                 => $options{for_class},
+        attribute_metaclass_roles => [qw/
+            MooseX::StrictAttributes::Meta::Attribute::Trait::Isa
+            MooseX::StrictAttributes::Meta::Attribute::Trait::Builder
+        /],
+    );
+
+}
 
 1;
 
@@ -15,10 +40,12 @@ MooseX::StrictAttributes - A collection of Attribute and Class traits to turn on
 
 =head1 SYNOPSIS
 
-    # Apply to all attributes in this class.
-    use Moose -traits => [qw/ StrictAttributeBuilders StrictAttributeIsas /];
+    use Moose;
+    # Apply all traits to all attributes in this class.
+    use MooseX::StrictAttributeBuilders;
 
     # Or apply to individual attributes
+    use MooseX::StrictAttributeBuilders ();
     has foo => ( is => 'ro', traits => [qw/ StrictAttributeBuilders StrictAttributeIsas /] );
 
 =head1 DESCRIPTION
@@ -27,14 +54,22 @@ When applied, ensures that any attributes you declare with a builder method
 actually have an existant builder method in their class, and ensures that when you use an
 isa type constraint which mentions a class name, that class name corresponds to a loaded class
 
+=head1 SEE ALSO
+
+=over
+
+=item L<MooseX::StrictAttributes::Meta::Attribute::Trait::Isa>
+
+=item L<MooseX::StrictAttributes::Meta::Attribute::Trait::Builder>
+
+=back
+
 =head1 BUGS AND SOURCE CODE
 
 This software probably contains bugs somewhere, and the way in which some components
 are implemented is not optimal.
 
-Patches welcome. Please ask in #moose for commit bits.
-
-The source code for this project is in the Moose repository at L<http://code2.0beta.co.uk/moose/svn/>
+Patches welcome.
 
 =head1 AUTHORS
 

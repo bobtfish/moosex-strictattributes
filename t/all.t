@@ -9,7 +9,8 @@ use Test::Exception;
 {
     package Some::Class;
     use Test::Exception;
-    use Moose -traits => [qw/ StrictAttributes /];
+    use Moose;
+    use MooseX::StrictAttributes;
     
     has foo => ( is => 'ro' );
     throws_ok {
@@ -23,7 +24,8 @@ use Test::Exception;
 {
     {
         package Running::Out::Of::Names;
-        use Moose -traits => [qw/ StrictAttributes /];
+        use Moose;
+        use MooseX::StrictAttributes;
     }
     my $i = Running::Out::Of::Names->new;
     TODO: {

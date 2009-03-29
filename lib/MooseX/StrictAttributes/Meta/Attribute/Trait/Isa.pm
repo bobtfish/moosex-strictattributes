@@ -36,6 +36,11 @@ sub _is_valid_class_name {
     return 0;
 }
 
+package # Hide from PAUSE
+    Moose::Meta::Attribute::Custom::Trait::StrictIsa;
+
+sub register_implementation { 'MooseX::StrictAttributes::Meta::Attribute::Trait::Isa' }
+
 1;
 
 __END__
@@ -71,9 +76,7 @@ test they also refer to valid classes.
 This software probably contains bugs somewhere, and the way in which some components
 are implemented is not optimal.
 
-Patches welcome. Please ask in #moose for commit bits.
-
-The source code for this project is in the Moose repository at L<http://code2.0beta.co.uk/moose/svn/>
+Patches welcome.
 
 =head1 AUTHORS
 
