@@ -8,7 +8,7 @@ use Moose::Util::MetaRole;
 
 use MooseX::StrictAttributes::Meta::Attribute::Trait::Isa;
 use MooseX::StrictAttributes::Meta::Attribute::Trait::Builder;
-#use MooseX::StrictAttributes::Meta::Attribute::Trait::Constructor;
+use MooseX::StrictAttributes::Meta::Attribute::Trait::Constructor;
 
 our $VERSION = '0.0001';
 
@@ -24,6 +24,7 @@ sub init_meta {
         attribute_metaclass_roles => [qw/
             MooseX::StrictAttributes::Meta::Attribute::Trait::Isa
             MooseX::StrictAttributes::Meta::Attribute::Trait::Builder
+            MooseX::StrictAttributes::Meta::Attribute::Trait::Constructor
         /],
     );
 
