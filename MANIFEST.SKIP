@@ -1,44 +1,23 @@
-# Avoid version control files.
-\bRCS\b
-\bCVS\b
-,v$
-\B\.svn\b
-\B\.git\b
-\B\.gitignore\b
-\B\.shipit\b
-
-# Avoid Makemaker generated and utility files.
-\bMakefile$
-\bblib
-\bMakeMaker-\d
-\bpm_to_blib$
-\bblibdirs$
-^MANIFEST\.SKIP$
-
-# Avoid Module::Build generated and utility files.
-\bBuild$
-\b_build
-
-# Avoid temp and backup files.
+^_build
+^Build$
+^blib
 ~$
-\.tmp$
-\.old$
 \.bak$
-\#$
-\b\.#
-\.DS_Store$
-
-# Avoid Apache::Test files
-t/conf/apache_test_config.pm
-t/conf/extra.conf$
-t/conf/httpd.conf
-t/conf/mime.types
-t/htdocs
-t/logs
-t/var
-
-# No tarballs!
-\.gz$
-
-# Skip the roadmap
-lib/Catalyst/ROADMAP.pod
+CVS
+\.svn
+\.DS_Store
+cover_db
+\..*\.sw.?$
+^Makefile$
+^pm_to_blib$
+^MakeMaker-\d
+^blibdirs$
+\.old$
+^#.*#$
+^\.#
+^TODO$
+^PLANS$
+^\._.*$
+\.shipit
+^MooseX-StrictAttributes-.*
+\.git.*

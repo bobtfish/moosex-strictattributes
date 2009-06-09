@@ -66,8 +66,8 @@ isa type constraint which mentions a class name, that class name corresponds to 
 
 =head1 BUGS AND SOURCE CODE
 
-This software probably contains bugs somewhere, and the way in which some components
-are implemented is not optimal.
+This software probably contains bugs, and there are much more elegant ways of
+inheriting default attribute traits than those implemented in this code.
 
 Patches welcome.
 
